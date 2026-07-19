@@ -17,5 +17,16 @@ spring:
         format_sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
 
+jwt:
+  secret: HVEm5nq05PYwJec1bJ4+21yxkrAMij6hpxly4GguUmg=
+  expiration: 86400000
+
+#logging:
+#  level:
+#    org.springframework.security: DEBUG
+
 server:
   port: 8080
+  error:
+    include-stacktrace: never
+    include-message: always
