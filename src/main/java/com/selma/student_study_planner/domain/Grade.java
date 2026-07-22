@@ -1,5 +1,6 @@
 package com.selma.student_study_planner.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -37,8 +38,14 @@ public class Grade {
 
     private LocalDate dateRecorded;
 
+    @NotNull(message = "Weight is required")
+    @DecimalMin(value = "0.0", message = "Weight cannot be negative")
+    @Column(nullable = false)
+    private Double weight = 1.0;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id", nullable = false)
+    @JsonIgnore
     private Course course;
 
     @CreatedDate

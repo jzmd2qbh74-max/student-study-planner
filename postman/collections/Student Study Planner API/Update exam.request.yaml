@@ -1,0 +1,18 @@
+$kind: http-request
+name: Update exam
+description: ""
+url: "http://localhost:8080/api/exam/1 "
+method: PUT
+body:
+  type: json
+  content: |
+    {
+        "title": "Midterm - Rescheduled",
+        "topic": "Derivatives and Integrals",
+        "examDate": "2026-08-20"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503420281460801

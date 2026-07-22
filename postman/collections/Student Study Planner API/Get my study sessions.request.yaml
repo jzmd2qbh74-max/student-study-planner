@@ -1,0 +1,10 @@
+$kind: http-request
+name: Get my study sessions
+description: ""
+url: http://localhost:8080/api/study-sessions
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503591014687184

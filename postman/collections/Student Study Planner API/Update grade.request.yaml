@@ -1,0 +1,18 @@
+$kind: http-request
+name: Update grade
+description: ""
+url: "http://localhost:8080/api/grade/1 "
+method: PUT
+body:
+  type: json
+  content: |
+    {
+        "type": "Midterm",
+        "score": 92.0,
+        "dateRecorded": "2026-08-16"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503522870920737

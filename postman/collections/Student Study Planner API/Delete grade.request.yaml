@@ -1,0 +1,10 @@
+$kind: http-request
+name: Delete grade
+description: ""
+url: http://localhost:8080/api/grade/1
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503533715621936

@@ -23,18 +23,37 @@ public class StudySessionService {
     public StudySession createSession(Long userId, StudySession session) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+
+        List<StudySession> overlaps = studySessionRepository.findOverlappingSessions(
+                userId, session.getStartTime(), session.getEndTime());
+
+        if (!overlaps.isEmpty()) {
+            throw new RuntimeException("This session overlaps with an existing study session");
+        }
+
         session.setUser(user);
         return studySessionRepository.save(session);
     }
 
-    public StudySession updateSessions(Long sessionId, StudySession updatedDate) {
+    public StudySession updateSession(Long userId, Long sessionId, StudySession updatedData) {
         StudySession session = studySessionRepository.findById(sessionId)
                 .orElseThrow(() -> new RuntimeException("Study session not found with id: " + sessionId));
 
-        session.setSubject(updatedDate.getSubject());
-        session.setStartTime(updatedDate.getStartTime());
-        session.setEndTime(updatedDate.getEndTime());
-        session.setNotes(updatedDate.getNotes());
+        if (!session.getUser().getId().equals(userId)) {
+            throw new RuntimeException("This session does not belong to the specified user");
+        }
+
+        List<StudySession> overlaps = studySessionRepository.findOverlappingSessionsExcludingSelf(
+                userId, sessionId, updatedData.getStartTime(), updatedData.getEndTime());
+
+        if (!overlaps.isEmpty()) {
+            throw new RuntimeException("This session overlaps with an existing study session");
+        }
+
+        session.setSubject(updatedData.getSubject());
+        session.setStartTime(updatedData.getStartTime());
+        session.setEndTime(updatedData.getEndTime());
+        session.setNotes(updatedData.getNotes());
 
         return studySessionRepository.save(session);
     }

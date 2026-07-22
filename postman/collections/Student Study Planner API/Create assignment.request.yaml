@@ -1,0 +1,18 @@
+$kind: http-request
+name: Create assignment
+description: ""
+url: http://localhost:8080/api/assignments/course/1
+method: POST
+body:
+  type: json
+  content: |
+    {
+        "title": "Homework 1",
+        "description": "Chapter 3 problems",
+        "dueDate": "2026-08-01"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4484437389386537

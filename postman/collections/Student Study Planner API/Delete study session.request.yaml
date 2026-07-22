@@ -1,0 +1,10 @@
+$kind: http-request
+name: Delete study session
+description: ""
+url: http://localhost:8080/api/study-sessions/1
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503596657638125

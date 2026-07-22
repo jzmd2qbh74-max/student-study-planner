@@ -1,0 +1,19 @@
+$kind: http-request
+name: Update study session
+description: ""
+url: http://localhost:8080/api/study-sessions/1
+method: PUT
+body:
+  type: json
+  content: |
+    {
+        "subject": "Calculus review - extended",
+        "startTime": "2026-08-10T14:00:00",
+        "endTime": "2026-08-10T17:00:00",
+        "notes": "Focus on integration by parts and series"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503596337732410

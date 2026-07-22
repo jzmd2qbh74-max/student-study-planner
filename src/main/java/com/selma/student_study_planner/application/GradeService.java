@@ -33,11 +33,34 @@ public class GradeService {
         grade.setScore(updatedDate.getScore());
         grade.setDateRecorded(updatedDate.getDateRecorded());
         grade.setType(updatedDate.getType());
+        grade.setWeight(updatedDate.getWeight());
 
         return gradeRepository.save(grade);
     }
 
     public void deleteGrade(Long gradeId) {
         gradeRepository.deleteById(gradeId);
+    }
+
+    public Double getWeightedAverageForCourse(Long courseId) {
+        List<Grade> grades = gradeRepository.findByCourseId(courseId);
+
+        if (grades.isEmpty()) {
+            return null;
+        }
+
+        double weightedSum = 0;
+        double totalWeight = 0;
+
+        for (Grade grade : grades) {
+            weightedSum += grade.getScore() * grade.getWeight();
+            totalWeight += grade.getWeight();
+        }
+
+        if (totalWeight == 0) {
+            return null;
+        }
+
+        return weightedSum / totalWeight;
     }
 }

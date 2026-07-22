@@ -33,10 +33,11 @@ public class StudySessionController {
 
     @PutMapping("/{id}")
     public ResponseEntity<StudySession> updateSession(
+            @AuthenticationPrincipal User user,
             @PathVariable Long id,
             @Valid @RequestBody StudySession updatedData
     ) {
-        return ResponseEntity.ok(studySessionService.updateSessions(id, updatedData));
+        return ResponseEntity.ok(studySessionService.updateSession(user.getId(), id, updatedData));
     }
 
     @DeleteMapping("/{id}")

@@ -42,4 +42,15 @@ public class ExamController {
         examService.deleteExam(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}/needs-study-time")
+    public ResponseEntity<Boolean> needsStudyTime(@PathVariable Long id) {
+        return ResponseEntity.ok(examService.hasNoStudySessionsScheduled(id));
+    }
+
+    @PostMapping("/{id}/send-reminder")
+    public ResponseEntity<String> sendReminder(@PathVariable Long id) {
+        examService.sendReminderIfNeeded(id);
+        return ResponseEntity.ok("Reminder check complete");
+    }
 }

@@ -1,0 +1,18 @@
+$kind: http-request
+name: Create exam
+description: ""
+url: http://localhost:8080/api/exam/course/1
+method: POST
+body:
+  type: json
+  content: |
+    {
+        "title": "Midterm",
+        "topic": "Derivatives and Integrals",
+        "examDate": "2026-08-15"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503139466030659

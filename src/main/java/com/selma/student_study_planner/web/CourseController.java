@@ -1,6 +1,7 @@
 package com.selma.student_study_planner.web;
 
 import com.selma.student_study_planner.application.CourseService;
+import com.selma.student_study_planner.application.GradeService;
 import com.selma.student_study_planner.domain.Course;
 import com.selma.student_study_planner.domain.User;
 import jakarta.validation.Valid;
@@ -17,6 +18,7 @@ import java.util.List;
 public class CourseController {
 
     private final CourseService courseService;
+    private final GradeService gradeService;
 
     @GetMapping
     public ResponseEntity<List<Course>> getMyCourses(@AuthenticationPrincipal User user) {
@@ -38,4 +40,11 @@ public class CourseController {
         courseService.deleteCourse(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{courseId}/average-grade")
+    public ResponseEntity<Double> getAverageGrade(@PathVariable Long courseId) {
+        Double average = gradeService.getWeightedAverageForCourse(courseId);
+        return ResponseEntity.ok(average);
+    }
+
 }

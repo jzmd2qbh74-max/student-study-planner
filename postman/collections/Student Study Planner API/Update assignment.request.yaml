@@ -1,0 +1,19 @@
+$kind: http-request
+name: Update assignment
+description: ""
+url: "http://localhost:8080/api/assignments/1 "
+method: PUT
+body:
+  type: json
+  content: |
+    {
+        "title": "Homework 1 - Updated",
+        "description": "Chapter 3 and 4 problems",
+        "dueDate": "2026-08-05",
+        "completed": true
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4495898728754138

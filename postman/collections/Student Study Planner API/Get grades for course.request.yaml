@@ -1,0 +1,10 @@
+$kind: http-request
+name: Get grades for course
+description: ""
+url: http://localhost:8080/api/grade/course/1
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4503457949902275

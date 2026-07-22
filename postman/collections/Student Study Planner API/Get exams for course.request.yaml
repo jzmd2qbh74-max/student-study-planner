@@ -1,0 +1,10 @@
+$kind: http-request
+name: Get exams for course
+description: ""
+url: "http://localhost:8080/api/exam/course/1 "
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4502908415583462
